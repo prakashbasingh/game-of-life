@@ -16,7 +16,7 @@ class Grid extends Component {
         //looping over every single box in the grid 
         for (let i = 0; i < this.props.rows; i++){
             for (let j = 0; j < this.props.cols; j++) {
-                let boxId = i + " " + j; // this will creat id that will go with each box 
+                let boxId = i + " " + j; // this will creat id of each box 
                 // console.log(boxId)
                 // now checking if the box is true or false if true one color if false another color
                 boxClassName =  this.props.mainGrid[i][j] ? "boxes on" : "boxes off";

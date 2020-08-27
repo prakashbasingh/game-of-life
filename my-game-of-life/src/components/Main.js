@@ -20,61 +20,7 @@ class Main extends Component{
         }
     }
 
-    selectBox = (row, col) => {
-        // making copy of the mainGrid array
-        let gridCopy = [...this.state.mainGrid];
 
-        // when we click on box setting to opposite state. if it is true and clicked set it to false and vice versa
-        gridCopy[row][col] = !gridCopy[row][col];
-        //now updating grid state
-        this.setState({
-            mainGrid: gridCopy
-        })
-    }
-    // method to fill grid box 
-    fillBox = () => {
-        let gridCopy = [...this.state.mainGrid];
-
-        // iterating through each box of the grid
-        for(let i = 0; i < this.rows; i++) {
-            for(let j = 0; j < this.cols; j++) {
-                // now using math function filling boxes with 0 or 1 
-                if(Math.floor(Math.random() *10)  === 1){
-                    gridCopy[i][j] = true
-                }
-            }
-        }
-        this.setState({
-            mainGrid: gridCopy
-        })
-    }
-
-    playButton = () => {
-        clearInterval(this.intervalId)
-        this.intervalId = setInterval(this.play, this.speed)
-    }
-
-    pauseButton = () => {
-        clearInterval(this.intervalId)
-    }
-
-    fastButton = () => {
-        this.speed = 100
-        this.playButton()
-    }
-
-    slowButton = () => {
-        this.speed = 1000
-        this.playButton()
-    }
-
-    clearButton = () => {
-        let grid = Array(this.rows).fill().map(() => Array(this.cols).fill(false));
-        this.setState({
-            mainGrid: grid,
-            generation: 0
-        })
-    }
 
     // building play function
     play = ()=> {
@@ -114,11 +60,71 @@ class Main extends Component{
         });
     }
 
-    // lifecycle method to run the fill box method and it will fill the box randomly with 0 and 1
+    // selectBox method allow manually select the each box in hte grid
+    selectBox = (row, col) => {
+        // making copy of the mainGrid array
+        let gridCopy = [...this.state.mainGrid];
+
+        // when we click on box setting to opposite state. if it is true and clicked set it to false and vice versa
+        gridCopy[row][col] = !gridCopy[row][col];
+        //now updating grid state
+        this.setState({
+            mainGrid: gridCopy
+        })
+    }
+
+    // method to fill grid box 
+    fillBox = () => {
+        let gridCopy = [...this.state.mainGrid];
+
+        // iterating through each box of the grid
+        for(let i = 0; i < this.rows; i++) {
+            for(let j = 0; j < this.cols; j++) {
+                // now using math function filling boxes with 0 or 1 
+                if(Math.floor(Math.random() *10)  === 1){
+                    gridCopy[i][j] = true
+                }
+            }
+        }
+        this.setState({
+            mainGrid: gridCopy
+        })
+    }
+
+    playButton = () => {
+        clearInterval(this.intervalId)
+        this.intervalId = setInterval(this.play, this.speed)
+    }
+
+    // when everything is loaded componentDidMount allow running these two function
     componentDidMount() {
         this.fillBox()
         this.playButton()
     }
+
+    pauseButton = () => {
+        clearInterval(this.intervalId)
+    }
+
+    fastButton = () => {
+        this.speed = 100
+        this.playButton()
+    }
+
+    slowButton = () => {
+        this.speed = 1000
+        this.playButton()
+    }
+
+    clearButton = () => {
+        let grid = Array(this.rows).fill().map(() => Array(this.cols).fill(false));
+        this.setState({
+            mainGrid: grid,
+            generation: 0
+        })
+    }
+
+
 
     render(){
         return (
