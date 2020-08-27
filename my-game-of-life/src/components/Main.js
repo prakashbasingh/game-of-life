@@ -1,5 +1,6 @@
 import React, { Component, useEffect } from 'react';
 import ReactDOM from 'react-dom';
+
 import Grid from "./Grid"
 import Buttons from "./buttons"
 
@@ -9,8 +10,8 @@ class Main extends Component{
     constructor(){
         super();
         this.speed = 500;
-        this.rows = 30;
-        this.cols = 30;
+        this.rows = 40;
+        this.cols = 40;
 
         this.state = {
             generation: 0,
@@ -21,7 +22,9 @@ class Main extends Component{
 
     selectBox = (row, col) => {
         // making copy of the gridFull array
-        let gridCopy = arrayClone(this.state.gridFull);
+        let gridCopy = [...this.state.gridFull];
+
+
         // when we click on box setting to opposite state. if it is true and clicked set it to false and vice versa
         gridCopy[row][col] = !gridCopy[row][col];
         //now updating grid state
@@ -31,7 +34,8 @@ class Main extends Component{
     }
     // method to fill grid box 
     fillBox = () => {
-        let gridCopy = arrayClone(this.state.gridFull);
+        let gridCopy = [...this.state.gridFull];
+
         // iterating through each box of the grid
         for(let i = 0; i < this.rows; i++) {
             for(let j = 0; j < this.cols; j++) {
@@ -78,7 +82,8 @@ class Main extends Component{
         // creating two grid and checking what it initial look like  
         let gridFirst = this.state.gridFull;
         //then changing the bos in the grid and setting on new clone grid
-        let gridSecond = arrayClone(this.state.gridFull);
+        let gridSecond = [...this.state.gridFull];
+
 
         // these two for loop will allow go through every box in the grid
         for (let i = 0; i < this.rows; i++) {
@@ -95,8 +100,13 @@ class Main extends Component{
                 if (i < this.rows - 1 && j < this.cols - 1) if (gridFirst[i + 1][j + 1]) count++;
 
                 // now applying the game of life rules
-                if (gridFirst[i][j] && (count < 2 || count > 3)) gridSecond[i][j] = false;
-                if (!gridFirst[i][j] && count === 3) gridSecond[i][j] = true;
+                if (gridFirst[i][j] === true && count < 2 ) {
+                    gridSecond[i][j] = false
+                } else if (gridFirst[i][j] === true && count > 3) {
+                    gridSecond[i][j] = false
+                } else if (gridFirst[i][j] === false && count === 3 ){
+                    gridSecond[i][j] = true
+                }
             }
         }
         this.setState({
@@ -128,15 +138,11 @@ class Main extends Component{
                          fastButton={this.fastButton}
                          clearButton={this.clearButton}
                          fillBox={this.fillBox}
-                         gridSize={this.gridSize}
                 />
             </div>
         )
     }
 }
 
-function arrayClone(arr){
-    return JSON.parse(JSON.stringify(arr))
-}
 
 export default Main
