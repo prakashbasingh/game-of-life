@@ -24,7 +24,6 @@ class Main extends Component{
         // making copy of the gridFull array
         let gridCopy = [...this.state.gridFull];
 
-
         // when we click on box setting to opposite state. if it is true and clicked set it to false and vice versa
         gridCopy[row][col] = !gridCopy[row][col];
         //now updating grid state
@@ -40,7 +39,7 @@ class Main extends Component{
         for(let i = 0; i < this.rows; i++) {
             for(let j = 0; j < this.cols; j++) {
                 // now using math function filling boxes with 0 or 1 
-                if(Math.floor(Math.random() * 5)  === 1){
+                if(Math.floor(Math.random() *10)  === 1){
                     gridCopy[i][j] = true
                 }
             }
