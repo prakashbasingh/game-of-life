@@ -12,21 +12,22 @@ body {
   }
 
 .off {
-  background-color: lightgray;
+  background-color: white;
 }
 
 .on {
-  background-color: green;
+  background-color: red;
 }
   
 .box:hover { 
-  background: #00CCFF;
+  background: greenyellow;
 }
 
 .center {
   margin: auto;
-  display: table;
-  margin-top: 10px;
+  display: flex;
+  align-content: center;  
+  margin-top: 15px;
 }
 
 .grid {

@@ -8,7 +8,7 @@ class Grid extends Component {
 
     render() {
         // setting grid size passed in from parent component Main
-        const width = (this.props.cols * 16) + 1;
+        const width = (this.props.cols * 16);
         // creating empty array and later adding stuff that will sho win the grid
         let rowsArr = [];
 
