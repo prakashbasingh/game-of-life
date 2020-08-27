@@ -19,7 +19,7 @@ class Grid extends Component {
                 let boxId = i + " " + j; // this will creat id that will go with each box 
                 // console.log(boxId)
                 // now checking if the box is true or false if true one color if false another color
-                boxClassName =  this.props.gridFull[i][j] ? "boxes on" : "boxes off";
+                boxClassName =  this.props.mainGrid[i][j] ? "boxes on" : "boxes off";
                 //now pushing all into the new array in Box component
                 rowsArr.push(
                     <Box boxClassName={boxClassName}

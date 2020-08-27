@@ -16,24 +16,24 @@ class Main extends Component{
         this.state = {
             generation: 0,
             // creating an array that is big as rows and fill that array mapping with another array which is big as this.cols each element in that elements are set to be false(every unit of the grids are turned off at the start)
-            gridFull: Array(this.rows).fill().map(() => Array(this.cols).fill(false))
+            mainGrid: Array(this.rows).fill().map(() => Array(this.cols).fill(false))
         }
     }
 
     selectBox = (row, col) => {
-        // making copy of the gridFull array
-        let gridCopy = [...this.state.gridFull];
+        // making copy of the mainGrid array
+        let gridCopy = [...this.state.mainGrid];
 
         // when we click on box setting to opposite state. if it is true and clicked set it to false and vice versa
         gridCopy[row][col] = !gridCopy[row][col];
         //now updating grid state
         this.setState({
-            gridFull: gridCopy
+            mainGrid: gridCopy
         })
     }
     // method to fill grid box 
     fillBox = () => {
-        let gridCopy = [...this.state.gridFull];
+        let gridCopy = [...this.state.mainGrid];
 
         // iterating through each box of the grid
         for(let i = 0; i < this.rows; i++) {
@@ -45,7 +45,7 @@ class Main extends Component{
             }
         }
         this.setState({
-            gridFull: gridCopy
+            mainGrid: gridCopy
         })
     }
 
@@ -71,7 +71,7 @@ class Main extends Component{
     clearButton = () => {
         let grid = Array(this.rows).fill().map(() => Array(this.cols).fill(false));
         this.setState({
-            gridFull: grid,
+            mainGrid: grid,
             generation: 0
         })
     }
@@ -79,9 +79,9 @@ class Main extends Component{
     // building play function
     play = ()=> {
         // creating two grid and checking what it initial look like  
-        let gridFirst = this.state.gridFull;
+        let gridFirst = this.state.mainGrid;
         //then changing the bos in the grid and setting on new clone grid
-        let gridSecond = [...this.state.gridFull];
+        let gridSecond = [...this.state.mainGrid];
 
 
         // these two for loop will allow go through every box in the grid
@@ -109,7 +109,7 @@ class Main extends Component{
             }
         }
         this.setState({
-            gridFull: gridSecond,
+            mainGrid: gridSecond,
             generation: this.state.generation + 1
         });
     }
@@ -124,7 +124,7 @@ class Main extends Component{
         return (
             <div>
                 {/* passing state variables as props to Grid components */}
-                <Grid gridFull = {this.state.gridFull} // passing full Grid
+                <Grid mainGrid = {this.state.mainGrid} // passing full Grid
                       rows = {this.rows} // passing the rows
                       cols = {this.cols} // passing the columns
                       selectBox={this.selectBox} //passing select box method
