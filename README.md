@@ -12,4 +12,3 @@
 1) create react app using npx create-react-app app-name
 2) four components created main, grid, box and button.
 3) in main component, first, using class component initial state(value) of speed, rows, columns, and empty array inside array (2d array- mainGrid) setup implemented. 
-4) 
