@@ -1,6 +1,7 @@
 # game-of-life
 https://conway-game-of-life-by-pbs.netlify.app/
-![Alt game-of-life-image](./Game-of-life.JPG)
+
+![Alt game-of-life-image](./src/Game-of-life.JPG)
 
 ## rules
 - Any live cell with fewer than two live neighbors dies, as if by under population.
